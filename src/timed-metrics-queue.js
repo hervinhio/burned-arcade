@@ -1,31 +1,31 @@
-const TimedMetrics = require('./timed-metrics');
+const TimedMetric = require('./timed-metric');
 
 class TimedMetricsQueue {
   #metrics = [];
 
-  push(metrics) {
-    this.#checkMetrics(metrics);
-    this.#createAndStoreTimedMetrics(metrics);
+  push(metric) {
+    this.#checkMetric(metric);
+    this.#createAndStoreTimedMetrics(metric);
   }
 
-  #checkMetrics = (metrics) => {
-    if(!metrics?.value) {
-      throw new Error('Invalid metrics data');
+  #checkMetric = (metric) => {
+    if(!metric?.value) {
+      throw new Error('Invalid metric data');
     }
   }
 
-  #createAndStoreTimedMetrics = (metrics) => {
-    const promise = new TimedMetrics(metrics);
-    promise.finally(() => {
+  #createAndStoreTimedMetrics = (metric) => {
+    const timedMetric = new TimedMetric(metric);
+    timedMetric.finally(() => {
       this.#metrics.shift();
     });
-    this.#metrics.push(promise);
+    this.#metrics.push(timedMetric);
   }
 
   sum() {
     if (this.#metrics.length > 0) {
       return this.#metrics
-            .map(metrics => metrics.value)
+            .map(metric => metric.value)
             .reduce((p, c) => p + c);
     } else {
       return 0;
@@ -37,7 +37,7 @@ class TimedMetricsQueue {
   }
 
   flush() {
-    this.#metrics.forEach(item => item.cancel());
+    this.#metrics.forEach(metric => metric.cancel());
   }
 }
 

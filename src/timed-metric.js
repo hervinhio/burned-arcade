@@ -1,6 +1,6 @@
 const settings = require("./settings");
 
-class TimedMetrics extends Promise {
+class TimedMetric extends Promise {
   value;
   #reject = () => { }
   #resolve =  () => { }
@@ -11,10 +11,10 @@ class TimedMetrics extends Promise {
   }
 
   get [Symbol.toStringTag]() {
-      return 'TimedMetrics';
+      return 'TimedMetric';
   }
 
-  constructor(metrics) {
+  constructor(metric) {
     var resolve;
     var reject;
 
@@ -23,13 +23,13 @@ class TimedMetrics extends Promise {
       resolve = _resolve;
     });
 
-    this.#init(resolve, reject, metrics);
+    this.#init(resolve, reject, metric);
   }
 
-  #init = (resolve, reject, metrics) => {
+  #init = (resolve, reject, metric) => {
     this.#reject = reject;
     this.#resolve = resolve;
-    this.value = Math.round(metrics.value);
+    this.value = Math.round(metric.value);
     this.#timeout = setTimeout(() => this.#resolve(), settings.storageTimeout);
   }
 
@@ -39,4 +39,4 @@ class TimedMetrics extends Promise {
   }
 }
 
-module.exports = TimedMetrics;
+module.exports = TimedMetric;
