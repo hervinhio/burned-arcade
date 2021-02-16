@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha src/*.spec.js",
     "live": "STORAGE_TIMEOUT=10000 node src/index",
-    "start": "node src/index"
+    "start": "node src/index",
+    "docs": "./node_modules/.bin/jsdoc src/*.js --destination docs"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/hervinhio/burned-arcade#readme",
   "devDependencies": {
+    "jsdoc": "^3.6.6",
     "mocha": "^8.3.0",
     "supertest": "^6.1.3"
   },

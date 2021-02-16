@@ -1,10 +1,11 @@
 const Settings = require("./settings");
 
 /**
- * @class TimedMetric
- * @description Implements a metric that can timeout or be cancelled.
+ * Implements a metric that can timeout or be cancelled.
+ * 
  * TimedMetric extends Promise. This way, when the metric times out, it resolve. When,
  * however, the metric is cancelled it rejects.
+ * @class
  */
 class TimedMetric extends Promise {
   value;
@@ -41,9 +42,11 @@ class TimedMetric extends Promise {
   }
 
   /**
-   * @function cancel Cancels the timed metric.
+   * Cancels the timed metric.
+   * 
    * When invoked, this method clears the timeout associated with the metric and, since the metric
    * is a promise, rejects it.
+   * @method
    */
   cancel() {
     clearTimeout(this.#timeout);
