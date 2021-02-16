@@ -6,6 +6,7 @@ const StatusCodes = require('./status-codes');
 const app = express();
 const SERVICE_PORT = process.env.PORT || 8082;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/metric/:key', (request, response) => {
