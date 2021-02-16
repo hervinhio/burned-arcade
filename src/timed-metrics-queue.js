@@ -2,7 +2,7 @@ const TimedMetric = require('./timed-metric');
 
 /**
  * Implements a queue for storing timed metrics.
- * 
+ *
  * The metrics in the queue are deleted when they are cancelled or when they time out.
  * @class
  */
@@ -11,7 +11,7 @@ class TimedMetricsQueue {
 
   /**
    * Pushes a new timed metric at the back of the queue.
-   * 
+   *
    * This method will throw an error if the data passed to it is not of the type { value: number }
    * @method
    * @param {object} metric The metric to insert in the queue
@@ -22,10 +22,10 @@ class TimedMetricsQueue {
   }
 
   #checkMetric = (metric) => {
-    if(!metric?.value) {
+    if (!metric?.value) {
       throw new Error('Invalid metric data');
     }
-  }
+  };
 
   #createAndStoreTimedMetrics = (metric) => {
     const timedMetric = new TimedMetric(metric);
@@ -33,7 +33,7 @@ class TimedMetricsQueue {
       this.#metrics.shift();
     });
     this.#metrics.push(timedMetric);
-  }
+  };
 
   /**
    * Sums all the metrics values currently in the queue.
@@ -43,8 +43,8 @@ class TimedMetricsQueue {
   sum() {
     if (this.#metrics.length > 0) {
       return this.#metrics
-            .map(metric => metric.value)
-            .reduce((p, c) => p + c);
+        .map((metric) => metric.value)
+        .reduce((p, c) => p + c);
     } else {
       return 0;
     }
@@ -64,7 +64,7 @@ class TimedMetricsQueue {
    * @method
    */
   flush() {
-    this.#metrics.forEach(metric => metric.cancel());
+    this.#metrics.forEach((metric) => metric.cancel());
     this.#metrics = [];
   }
 }

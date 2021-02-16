@@ -4,10 +4,10 @@ const Settings = require('./settings');
 
 describe('TimedMetricsQueue', () => {
   let queue;
-  
+
   beforeEach(() => {
     Settings.StorageTimeout = 10;
-    queue = new TimedMetricsQueue('visitors')
+    queue = new TimedMetricsQueue('visitors');
   });
 
   it('sum() should return 0 when all metrics have timed out', async () => {
@@ -19,7 +19,7 @@ describe('TimedMetricsQueue', () => {
     assert.strictEqual(queue.sum(), 0);
   });
 
-  it('sum() should return non 0 value when some metrics haven\`t yet timed out', () => {
+  it('sum() should return non 0 value when some metrics haven`t yet timed out', () => {
     Settings.StorageTimeout = 3600000;
 
     queue.push({ value: 92 });
@@ -31,9 +31,11 @@ describe('TimedMetricsQueue', () => {
   });
 
   it('sum() should return value equal to all non timedout metrics values', async () => {
-    queue.push({ value: 700});
-    await new Promise(resolve => setTimeout(resolve, Settings.StorageTimeout));
-    
+    queue.push({ value: 700 });
+    await new Promise((resolve) =>
+      setTimeout(resolve, Settings.StorageTimeout)
+    );
+
     queue.push({ value: 3 });
     queue.push({ value: 103 });
     queue.push({ value: 22 });
@@ -43,23 +45,31 @@ describe('TimedMetricsQueue', () => {
 
   it('sum() should round result to the nearest integer', () => {
     queue.push({ value: 12.8889 });
-    queue.push({ value: 44/7 });
-    queue.push({ value: 5E-1 });
+    queue.push({ value: 44 / 7 });
+    queue.push({ value: 5e-1 });
 
-    assert.strictEqual(queue.sum(), 20)
+    assert.strictEqual(queue.sum(), 20);
     queue.flush();
   });
 
   it('sum() invalid metrics value should not be stored', () => {
     assert.throws(() => queue.push(), Error, 'Invalid metrics data');
     assert.throws(() => queue.push(null), Error, 'Invalid metrics data');
-    assert.throws(() => queue.push('Some random string'), Error, 'Invalid metrics data');
-    assert.throws(() => queue.push({ what: 'Something' }), Error, 'Invalid metrics data');
+    assert.throws(
+      () => queue.push('Some random string'),
+      Error,
+      'Invalid metrics data'
+    );
+    assert.throws(
+      () => queue.push({ what: 'Something' }),
+      Error,
+      'Invalid metrics data'
+    );
   });
 
   it('flush() cancels all timeouts and rejects every timed metrics', () => {
-    queue.push({ value: 44/7 });
-    queue.push({ value: 5E-1 });
+    queue.push({ value: 44 / 7 });
+    queue.push({ value: 5e-1 });
     queue.flush();
 
     assert.strictEqual(queue.sum(), 0);

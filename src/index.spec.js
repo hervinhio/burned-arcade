@@ -22,7 +22,6 @@ describe('Http', () => {
       });
   });
 
-  
   it('POST with invalid data should return StatusCodes.BadRequest Bad request', (done) => {
     request(app)
       .post('/metric/cpu')
@@ -38,7 +37,6 @@ describe('Http', () => {
       });
   });
 
-  
   it('GET with existing metrics returns the correct sum', (done) => {
     store.store('cpu', { value: 47.8 });
     store.store('cpu', { value: 99 });
@@ -51,7 +49,7 @@ describe('Http', () => {
       .expect('Content-Type', 'application/json; charset=utf-8')
       .expect(StatusCodes.Ok)
       .end((_, response) => {
-        assert.deepStrictEqual(response.body, { value: 223 })
+        assert.deepStrictEqual(response.body, { value: 223 });
         store.flush();
         done();
       });
@@ -65,8 +63,8 @@ describe('Http', () => {
       .end(() => {
         done();
       });
-  })
-  
+  });
+
   after(() => {
     app.close();
   });

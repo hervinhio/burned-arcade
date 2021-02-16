@@ -7,7 +7,9 @@
     "test": "mocha src/*.spec.js",
     "live": "STORAGE_TIMEOUT=10000 node src/index",
     "start": "node src/index",
-    "docs": "./node_modules/.bin/jsdoc src/*.js --destination docs"
+    "docs": "./node_modules/.bin/jsdoc src/*.js --destination docs",
+    "prettier:check": "prettier --single-quote --check {src,__{tests,mocks}__}/**/*.js",
+    "prettify": "prettier --single-quote --write {src,__{tests,mocks}__}/**/*.js"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 const assert = require('assert');
-const Settings = require("./settings");
-const TimedMetric = require("./timed-metric");
+const Settings = require('./settings');
+const TimedMetric = require('./timed-metric');
 
 describe('TimedMetric', () => {
   before(() => {
@@ -8,7 +8,7 @@ describe('TimedMetric', () => {
   });
 
   it('TimedMetric resolves after timeout', () => {
-    return assert.doesNotReject(new TimedMetric({ value: 33}));
+    return assert.doesNotReject(new TimedMetric({ value: 33 }));
   });
 
   it('TimedMetric rejects when cancelled', () => {

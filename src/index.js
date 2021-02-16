@@ -25,7 +25,6 @@ app.get('/metric/:key/sum', (request, response) => {
     const sum = store.sum(request.params.key);
     response.send({ value: sum });
   } catch (e) {
-    console.log('Sum on inexisting metric key attempted');
     response.sendStatus(StatusCodes.NotFound);
   }
 });
@@ -36,5 +35,5 @@ process.on('exit', () => {
 });
 
 module.exports = app.listen(SERVICE_PORT, () => {
-  console.log('Server started up successfully!')
+  console.log('Server started up successfully!');
 });

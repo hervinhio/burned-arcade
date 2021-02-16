@@ -1,8 +1,8 @@
-const Settings = require("./settings");
+const Settings = require('./settings');
 
 /**
  * Implements a metric that can timeout or be cancelled.
- * 
+ *
  * TimedMetric extends Promise. This way, when the metric times out, it resolve. When,
  * however, the metric is cancelled it rejects.
  * @class
@@ -18,7 +18,7 @@ class TimedMetric extends Promise {
   }
 
   get [Symbol.toStringTag]() {
-      return 'TimedMetric';
+    return 'TimedMetric';
   }
 
   constructor(metric) {
@@ -39,18 +39,18 @@ class TimedMetric extends Promise {
     this.#resolve = resolve;
     this.value = Math.round(metric.value);
     this.#timeout = setTimeout(() => this.#resolve(), Settings.StorageTimeout);
-  }
+  };
 
   /**
    * Cancels the timed metric.
-   * 
+   *
    * When invoked, this method clears the timeout associated with the metric and, since the metric
    * is a promise, rejects it.
    * @method
    */
   cancel() {
     clearTimeout(this.#timeout);
-    this.#reject(new Error('Aborted')); 
+    this.#reject(new Error('Aborted'));
   }
 }
 

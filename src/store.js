@@ -1,4 +1,4 @@
-const TimedMetricsQueue = require("./timed-metrics-queue");
+const TimedMetricsQueue = require('./timed-metrics-queue');
 
 /**
  * Data structure for storing metrics in metrics queues.
@@ -10,8 +10,8 @@ class Store {
 
   /**
    * Stores the given metrics in the metric queue corresponding to the given key.
-   * * If no queue exists for the given key, one is created.
-   * @method 
+   * If no queue exists for the given key, one is created.
+   * @method
    * @param {string} key The metric key
    * @param {object} metric The metric to store
    */
@@ -41,10 +41,10 @@ class Store {
    * @method
    */
   flush() {
-    Object.values(this.#metricsQueues).forEach(queue => queue.flush());
+    Object.values(this.#metricsQueues).forEach((queue) => queue.flush());
     this.#metricsQueues = {};
   }
-};
+}
 
 const store = new Store();
 
