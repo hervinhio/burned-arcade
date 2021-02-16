@@ -26,7 +26,6 @@ describe('TimedMetricsQueue', () => {
        timeout to make sure that no metrics timeout will occur during the execution of this
        test and the that the assertion will be correct.
     */
-    const formerTimeoutValue = settings.storageTimeout;
     settings.storageTimeout = 3600000;
 
     queue.push({ value: 92 });
@@ -64,4 +63,4 @@ describe('TimedMetricsQueue', () => {
     assert.throws(() => queue.push('Some random string'), Error, 'Invalid metrics data');
     assert.throws(() => queue.push({ what: 'Something' }), Error, 'Invalid metrics data');
   })
-})
+});

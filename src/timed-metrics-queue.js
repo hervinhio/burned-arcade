@@ -1,45 +1,27 @@
 const TimedMetrics = require('./timed-metrics');
-const settings = require('./settings');
 
 class TimedMetricsQueue {
   #metrics = [];
 
-  constructor() {
-
+  push(metrics) {
+    this.#checkMetrics(metrics);
+    this.#createAndStoreTimedMetrics(metrics);
   }
 
-  /**
-   * @fn push
-   * @brief Pushes a new metric in the queue and sets a timeout to delete that
-   * metric value when it's been stored for more than an hour.
-   * @param metrics The metrics value.
-   */
-  push(metrics) {
+  #checkMetrics = (metrics) => {
     if(!metrics?.value) {
       throw new Error('Invalid metrics data');
     }
-    
+  }
+
+  #createAndStoreTimedMetrics = (metrics) => {
     const promise = new TimedMetrics(metrics);
-    this.#metrics.push(promise);
-
-    promise.then(() => {
-      this.#deleteMetrics(promise);
-    })
-    .catch((e) => {
-      this.#deleteMetrics(promise);
+    promise.finally(() => {
+      this.#metrics.shift();
     });
+    this.#metrics.push(promise);
   }
 
-  #deleteMetrics = (metrics) => {
-    const indexToRemove = this.#metrics.indexOf(metrics);
-    this.#metrics.splice(indexToRemove, 1);
-  }
-
-  /**
-   * @fn sum
-   * @brief Returns a sum of all metrics values in the queue.
-   * @returns The sum of all metrics in the queue.
-   */
   sum() {
     if (this.#metrics.length > 0) {
       return this.#metrics

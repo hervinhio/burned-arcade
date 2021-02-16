@@ -2,9 +2,17 @@ const settings = require("./settings");
 
 class TimedMetrics extends Promise {
   value;
-  #_reject = () => { }
-  #_resolve =  () => { }
-  #_timeout;
+  #reject = () => { }
+  #resolve =  () => { }
+  #timeout;
+
+  static get [Symbol.species]() {
+    return Promise;
+  }
+
+  get [Symbol.toStringTag]() {
+      return 'TimedMetrics';
+  }
 
   constructor(metrics) {
     var resolve;
@@ -15,23 +23,19 @@ class TimedMetrics extends Promise {
       resolve = _resolve;
     });
 
-    this.#_reject = reject;
-    this.#_resolve = resolve;
+    this.#init(resolve, reject, metrics);
+  }
+
+  #init = (resolve, reject, metrics) => {
+    this.#reject = reject;
+    this.#resolve = resolve;
     this.value = Math.round(metrics.value);
-    this.#_timeout = setTimeout(() => this.#_resolve(), settings.storageTimeout);
+    this.#timeout = setTimeout(() => this.#resolve(), settings.storageTimeout);
   }
 
   cancel() {
-    clearTimeout(this.#_timeout);
-    this.#_reject(new Error('Aborted')); 
-  }
-
-  static get [Symbol.species]() {
-    return Promise;
-}
-
-  get [Symbol.toStringTag]() {
-      return 'TimedMetrics';
+    clearTimeout(this.#timeout);
+    this.#reject(new Error('Aborted')); 
   }
 }
 
