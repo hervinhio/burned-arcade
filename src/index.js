@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const store = require('./store');
 const StatusCodes = require('./status-codes');
 
