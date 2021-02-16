@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha src/*.spec.js",
-    "live": "STORAGE_TIMEOUT=10000 node src/index"
+    "live": "STORAGE_TIMEOUT=10000 node src/index",
+    "start": "node src/index"
   },
   "repository": {
     "type": "git",
