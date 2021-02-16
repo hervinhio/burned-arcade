@@ -1,0 +1,22 @@
+{
+  "name": "burned-arcade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha src/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hervinhio/burned-arcade.git"
+  },
+  "author": "Hervé Mutombo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hervinhio/burned-arcade/issues"
+  },
+  "homepage": "https://github.com/hervinhio/burned-arcade#readme",
+  "devDependencies": {
+    "mocha": "^8.3.0"
+  }
+}
