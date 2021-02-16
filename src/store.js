@@ -12,15 +12,14 @@ class Store {
 
   sum(key) {
     if (!this.#metricsQueues[key]) {
-      return 0;
+      throw new Error('Queue Not Found');
     }
     return this.#metricsQueues[key].sum();
   }
 
   flush() {
-    for (let queue of Object.values(this.#metricsQueues)) {
-      queue.flush();
-    }
+    Object.values(this.#metricsQueues).forEach(queue => queue.flush());
+    this.#metricsQueues = {};
   }
 };
 

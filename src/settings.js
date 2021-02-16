@@ -1,7 +1,7 @@
 const EnvStorageTimeout = process.env.STORAGE_TIMEOUT;
 
-const settings = {
-  storageTimeout: EnvStorageTimeout || 3600000,
+const Settings = {
+  StorageTimeout: EnvStorageTimeout || 3600000,
 }
 
-module.exports = settings;
+module.exports = Settings;

@@ -1,9 +1,9 @@
-const settings = require("./settings");
+const Settings = require("./settings");
 
 class TimedMetric extends Promise {
   value;
-  #reject = () => { }
-  #resolve =  () => { }
+  #reject;
+  #resolve;
   #timeout;
 
   static get [Symbol.species]() {
@@ -30,7 +30,7 @@ class TimedMetric extends Promise {
     this.#reject = reject;
     this.#resolve = resolve;
     this.value = Math.round(metric.value);
-    this.#timeout = setTimeout(() => this.#resolve(), settings.storageTimeout);
+    this.#timeout = setTimeout(() => this.#resolve(), Settings.StorageTimeout);
   }
 
   cancel() {

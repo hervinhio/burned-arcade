@@ -1,10 +1,10 @@
 const assert = require('assert');
-const settings = require("./settings");
+const Settings = require("./settings");
 const TimedMetric = require("./timed-metric");
 
 describe('TimedMetric', () => {
   before(() => {
-    settings.storageTimeout = 10;
+    Settings.StorageTimeout = 10;
   });
 
   it('TimedMetric resolves after timeout', () => {

@@ -32,12 +32,13 @@ class TimedMetricsQueue {
     }
   }
 
-  empty() {
+  all() {
     return Promise.all(this.#metrics);
   }
 
   flush() {
     this.#metrics.forEach(metric => metric.cancel());
+    this.#metrics = [];
   }
 }
 
