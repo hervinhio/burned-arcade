@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <title>Server Watcher</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="log">
+      <div class="header p-8">
+        <span>Key</span>
+        <span>Sum</span>
+      </div>
+      <div class="row p-8" id="cpu">
+        <span>cpu</span>
+        <span class="value">0</span>
+      </div>
+      <div class="row p-8" id="mem">
+        <span>mem</span>
+        <span class="value">0</span>
+      </div>
+      <div class="row p-8" id="processes">
+        <span>processes</span>
+        <span class="value">0</span>
+      </div>
+      <div class="row p-8" id="threads">
+        <span>threads</span>
+        <span class="value">0</span>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="watcher.js"></script>
+</html>

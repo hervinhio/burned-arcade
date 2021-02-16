@@ -1,0 +1,100 @@
+.html, body {
+  width: 100%;
+  height: 100%;
+  margin: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.log {
+  position: fixed;
+  display: block;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  margin: auto;
+
+  width: 200px;
+  height: 100px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  
+  background-color: #7b1fa2;
+  color: #fff;
+}
+
+.header > span {
+  display: block;
+  width: 100px;
+  height: 24px;
+  font-weight: 600;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 24px;
+}
+
+.row > span {
+  display: block;
+  width: 100px;
+}
+
+.p-8 {
+  padding: 8px;
+}
+
+.action-pane {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  height: fit-content;
+  right: 0; left: 0;
+  top: 0; bottom: 0;
+  margin: auto;
+}
+
+.mini-report {
+  color: #263238;
+  width: 220px;
+}
+
+.mini-report > span {
+  display: block;
+  height: 36px;
+  width: 220px;
+  background-color: #eceff1;
+  padding: 4px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.btn {
+  position: relative;
+  margin-top: 16px;
+  width: 220px;
+  right: 0; left: 0;
+  margin-left: auto; margin-right: auto;
+
+  background-color: #263238;
+  border: none;
+  height: 36px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: #263238;
+  border: solid 2px #263238;
+  height: 32px;
+  width: 216px;
+}
