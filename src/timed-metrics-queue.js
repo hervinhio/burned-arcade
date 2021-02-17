@@ -41,13 +41,32 @@ class TimedMetricsQueue {
    * @method
    */
   sum() {
-    if (this.#metrics.length > 0) {
-      return this.#metrics
-        .map((metric) => metric.value)
+    /*
+    It would be much easier here to do 
+      ```
+      this.#metrics
+        .map(metric => metric.value)
         .reduce((p, c) => p + c);
-    } else {
-      return 0;
+      ```
+    That would mean iterating twice over the #metrics array.
+    Instead of doing that I've decided, during the reduce() to map the 'previous' value to a number...
+    the very value of the 'previous' argument. As for the rest, we simply add that value to 'current.value'.
+    This, however only works when you have more than 1 element in the array otherwise reduce() would return
+    the only element of the array and confuse the caller who expects a number.
+    That's why I created a special case for when there's only one element in the array.
+    */
+    if (this.#metrics.length == 1) {
+      return this.#metrics[0].value;
+    } else if (this.#metrics.length > 1) {
+      return this.#metrics.reduce((previous, current, index) => {
+        if (index === 1) {
+          return previous.value + current.value;
+        }
+        return previous + current.value;
+      });
     }
+
+    return 0;
   }
 
   /**
