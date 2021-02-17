@@ -17,6 +17,9 @@ The following image shows metric transition starting when it is created until wh
 - Run `npm run test` to run the tests
 - Run `npm run live` to run the server live and perform tests against it.
 
+When you run `npm run live` you can perform tests by opening the html files `tools/watcher.html` to watch how the sums rise and fall as new metrics are logged. `tools/client.html` to log metrics by pressing on **Send**.
+![Queue proces](./assets/local-test.png)
+
 ### In production
 Go to https://burned-arcade.herokuapp.com to see the server in production.
 
