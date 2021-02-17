@@ -1,6 +1,10 @@
 # Back End Software Engineer
 ## Test Assignment
 
+### Resources
+Here's a [recording](https://drive.google.com/file/d/10h4Vb4LBDT1I0zw82nSCKdD2x608yXF9/view?usp=sharing) of how the application works in production.
+
+
 ## How it's made
 The assignment has it as a requirement to get rid of metrics when they are older than an hour. To solve this, this solution implements what's called a *Timed Metric*. This is a metric that will, after a 1-hour timeout signal that it is no longer valid and should be discarded. The following image describes a metric's lifecycle.
 ![Metric lifecycle](./assets/metric-lf.png)
@@ -22,6 +26,3 @@ When you run `npm run live` you can perform tests by opening the html files `too
 
 ### In production
 Go to https://burned-arcade.herokuapp.com to see the server in production.
-
-### Resources
-Here's a [recording](https://drive.google.com/insert_your_real_url_here) of how the application works in production.

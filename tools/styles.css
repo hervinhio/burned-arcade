@@ -60,6 +60,7 @@
 }
 
 .mini-report {
+  display: none;
   color: #263238;
   width: 220px;
 }
@@ -97,4 +98,10 @@
   border: solid 2px #263238;
   height: 32px;
   width: 216px;
+}
+
+.h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
 }

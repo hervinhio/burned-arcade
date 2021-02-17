@@ -1,15 +1,15 @@
 const getMetricSum = (key) => {
   $.ajax({
     url: `http://localhost:8082/metric/${key}/sum`,
-    method: 'GET'
+    method: 'GET',
   })
-  .done(data => {
-    $(`#${key} > .value`).html(data.value);
-  })
-  .fail((error) => {
-    console.error(error);
-  });
-}
+    .done((data) => {
+      $(`#${key} > .value`).html(data.value);
+    })
+    .fail((error) => {
+      console.error(error);
+    });
+};
 
 $(document).ready(() => {
   setInterval(() => {
@@ -17,5 +17,5 @@ $(document).ready(() => {
     getMetricSum('mem');
     getMetricSum('processes');
     getMetricSum('threads');
-  }, 2000);
+  }, 1000);
 });

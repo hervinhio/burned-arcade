@@ -3,13 +3,12 @@ const sendRandomMetricsData = (key) => {
     url: `http://localhost:8082/metric/${key}`,
     method: 'POST',
     dataType: 'json',
-    contentType:"application/json; charset=utf-8",
-    data: JSON.stringify({ value: Math.random() * 99 + 1 })
-  })
-  .fail((error) => {
+    contentType: 'application/json; charset=utf-8',
+    data: JSON.stringify({ value: Math.random() * 99 + 1 }),
+  }).fail((error) => {
     console.error(error);
   });
-}
+};
 
 const sendData = () => {
   const actionPane = $('.mini-report');
@@ -19,4 +18,4 @@ const sendData = () => {
   sendRandomMetricsData('threads');
   actionPane.fadeIn();
   setTimeout(() => actionPane.fadeOut(), 15000);
-}
+};
