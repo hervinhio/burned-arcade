@@ -15,7 +15,7 @@ app.post('/metric/:key', (request, response) => {
     store.store(request.params.key, request.body);
     response.send({});
   } catch (e) {
-    console.log('Attempt to store invalid metric data');
+    console.error(e);
     response.sendStatus(StatusCodes.BadRequest);
   }
 });
@@ -25,15 +25,16 @@ app.get('/metric/:key/sum', (request, response) => {
     const sum = store.sum(request.params.key);
     response.send({ value: sum });
   } catch (e) {
+    console.error(e);
     response.sendStatus(StatusCodes.NotFound);
   }
 });
 
 process.on('exit', () => {
   store.flush();
-  console.log('All timers cancelled and data flushed. Server is now exiting');
+  console.debug('All timers cancelled and data flushed. Server is now exiting');
 });
 
 module.exports = app.listen(SERVICE_PORT, () => {
-  console.log('Server started up successfully!');
+  console.info('Server started up successfully!');
 });
