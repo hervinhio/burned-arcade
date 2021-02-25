@@ -65,6 +65,11 @@ describe('TimedMetricsQueue', () => {
       Error,
       'Invalid metrics data'
     );
+    assert.throws(
+      () => queue.push({ value: '0' }),
+      Error,
+      'Invalid metrics data'
+    );
   });
 
   it('flush() cancels all timeouts and rejects every timed metrics', () => {

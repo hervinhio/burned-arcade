@@ -22,7 +22,7 @@ class TimedMetricsQueue {
   }
 
   #checkMetric = (metric) => {
-    if (!metric?.value) {
+    if (typeof metric.value !== 'number') {
       throw new Error('Invalid metric data');
     }
   };
